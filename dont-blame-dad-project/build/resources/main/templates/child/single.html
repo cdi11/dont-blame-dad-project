@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<nav th:replace="fragments :: navigation"></nav>
+
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+
+<label>Jobs</label>
+<table>
+    <tr>
+        <div th:each="job : ${jobs}" th:class="checkbox">
+            <input style="padding-left:25px" type="checkbox" th:name="jobIds" th:value="${job.id}" th:id="${job.id}"/>
+            <label th:for="${job.id}" th:text="${job.name}"></label>
+
+
+        </div>
+    </tr>
+    <p th:unless="${jobs.size()}"><i>No Jobs yet</i></p>
+
+</table>
+
+<input type = "submit" value ="Done"/>
+
+<br/>
+
+
+
+<label th:for="rewardId">Reward</label>
+<select name="rewardId">
+    <option th:each="reward : *{rewards}"
+            th:text="${reward.name}"
+            th:value="${reward.id}"></option>
+</select>
+
+<p th:unless="${rewards.size()}"><i>Finish your work to get a Reward</i></p>
+
+<p><a th:href="'/child/add-job/' + ${childId}">Add Job</a> |
+    <a th:href="'/child/add-reward/' + ${childId}">Add Reward</a></p>
+<p><a th:href="'/child/remove-job/' + ${childId}">Remove Job</a> |
+    <a th:href="'/child/remove-reward/' + ${childId}">Remove Reward</a></p>
+
+</body>
+</html>

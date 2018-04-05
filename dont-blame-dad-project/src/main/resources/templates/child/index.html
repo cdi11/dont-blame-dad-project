@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+
+
+
+<p th:unless="${children} and ${children.size()}">No Children Yet :(</p>
+
+
+<table class="table">
+
+    <tr>
+
+
+    </tr>
+
+    <tr>
+        <li th:each="child :${children}">
+            <a th:href="'/child/single/' + ${child.id}" th:text="${child.name}"></a>
+        </li>
+
+    </tr>
+</table>
+
+
+<a href = "/child/add">Add a Child</a> |
+<a href = "/child/remove">Remove a Child</a>
+
+</body>
+</html>

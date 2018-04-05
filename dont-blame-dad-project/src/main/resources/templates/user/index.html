@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+
+
+<h1 th:text="${title}">Default Title</h1>
+
+<body class="container">
+
+
+
+
+<p th:unless="${users} and ${users.size()}">No Parents Yet :(</p>
+
+
+<table class="table">
+
+
+
+    <tr>
+        <li th:each="user :${users}">
+            <a th:href="'/user/single/' + ${uid}" th:text="${user.username}"></a>
+        </li>
+
+    </tr>
+</table>
+
+
+<a href = "/user/add">Add a Parent</a> |
+<a href = "/user/remove">Remove a Parent</a>
+
+</body>
+</html>
+
